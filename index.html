@@ -123,12 +123,20 @@
     }
 
     .hero-avatar {
-      width: 52px;
-      height: 52px;
+      width: 88px;
+      height: 88px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
       border: 1px solid var(--rule);
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--text-bright);
+      line-height: 1.3;
     }
 
     .hero-bio {
@@ -537,6 +545,7 @@
       <section class="hero" id="about">
         <div class="hero-intro">
           <img class="hero-avatar" src="photo.jpeg" alt="Darren Lee">
+          <p class="hero-tagline">AI Strategy &amp; Agent Development for Enterprises</p>
         </div>
         <div class="hero-bio">
           <div class="bio-row">

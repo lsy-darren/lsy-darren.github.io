@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Deployment Skill Tree — Darren Lee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0e0e0e;
+      --text: #d4cfc8;
+      --text-dim: #7a756d;
+      --text-bright: #ebe6de;
+      --accent: #c8a882;
+      --rule: #2a2724;
+      --serif: 'Newsreader', Georgia, serif;
+      --sans: 'Outfit', system-ui, sans-serif;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 0;
+      background: rgba(14, 14, 14, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.4s ease;
+    }
+
+    nav.scrolled { border-bottom-color: var(--rule); }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text-bright);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-back {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: color 0.3s ease;
+    }
+
+    .nav-back:hover { color: var(--text-bright); }
+
+    main {
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+    }
+
+    .article-meta {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text-bright);
+      line-height: 1.25;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .article-body p {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.6rem;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body strong {
+      font-weight: 500;
+      color: var(--text-bright);
+    }
+
+    .article-body a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .article-body a:hover { border-bottom-color: var(--accent); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .article-body p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <div class="container">
+      <a class="nav-name" href="index.html">Darren Lee</a>
+      <a class="nav-back" href="index.html#writing">← Writing</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="article-meta">Dec 2025</div>
+      <h1>The Deployment Skill Tree</h1>
+      <div class="article-body">
+        <p>In my last piece, I argued that Forward Deployed Strategy is becoming its own discipline in enterprise AI. If that's true, it should have its own skill tree. Here's how I've started to think about it.</p>
+        <p>The skill tree has three branches. Each one is learnable, each one compounds over time, and none of them are optional. The deployments that go well tend to have someone strong in all three. The ones that stall almost always have a gap in at least one.</p>
+        <p><strong>Technical fluency</strong></p>
+        <p>This doesn't mean writing the agent. It means understanding enough about the architecture to make good strategic calls.</p>
+        <p>For example, voice and chat agents often share a common core: the same journeys, integrations, and policies. But voice adds a modality-specific layer: transcription, synthesis, interruption handling, conversational design constraints. If you don't understand that, you'll underestimate what it takes to extend a chat agent into voice, or over-promise what voice can do at launch. At one deployment, a voice agent went live with a 21% success rate. The blockers weren't the AI. They were latency, transcription accuracy, and the fact that the operations team hadn't set up incident management or analytics yet.</p>
+        <p>You also need to understand integration architecture: how the agent connects to CRMs, telephony platforms, and knowledge bases. At a fintech, the agent's CRM integration behaved differently under live load than in testing. Customer sentiment dropped within hours of launch. The AI was fine. The integration wasn't stress-tested.</p>
+        <p>Technical fluency isn't about being an engineer. It's about knowing enough to ask the right questions before things go wrong.</p>
+        <p><strong>Organisational reading</strong></p>
+        <p>This is probably the hardest branch to develop, because it can't be learned from documentation. It's the ability to read the customer's organisation and anticipate where deployment will stall.</p>
+        <p>The most common pattern I've seen: a single point of failure on the customer's team. One enterprise customer had essentially one engineer who knew how to build on the platform. When that person's capacity ran out, velocity collapsed. The customer had repeatedly declined offers for enablement and training. By the time they asked for help, months had been lost.</p>
+        <p>Another pattern: slow API development on the customer side. At an automotive company, the only live use case required a human to manually trigger each interaction. Three months in, nothing was automated. The value realisation was near zero, not because the agent couldn't perform, but because the customer's engineering team hadn't built the integrations to let it.</p>
+        <p>Then there's executive sponsorship. At a financial services company, the working-level team was enthusiastic, but the executive sponsor had gone quiet for weeks. Without top-down alignment, the agent's footprint stayed narrow while the customer quietly started building internal alternatives.</p>
+        <p>The skill here isn't just noticing these patterns. It's noticing them early enough to intervene. Each deployment teaches you what the warning signs look like, which makes you faster at spotting them next time. That compounding is the real value of the branch.</p>
+        <p><strong>Deployment sequencing</strong></p>
+        <p>This is the branch most people underestimate. It's not just "what do we build?" It's "what do we build first, and what do we deliberately leave for later?"</p>
+        <p>The most consistent principle I've seen work: start with volume and clarity. Pick use cases with high conversation volume and clear success metrics. A payments company launching across five regulated markets focused on their two highest-volume conversation types: cards and transfers. They ran hundreds of simulations and thousands of penetration tests before going live. That rigour set the foundation for expansion.</p>
+        <p>When the initial scope is wrong, the cost is real. An enterprise retail brand launched with standard automation, but usage was so low (single digits per week) that it was impossible to demonstrate value. The corrective action was to ask the customer to identify higher-volume use cases where impact would be measurable.</p>
+        <p>Another sequencing lesson: standardisation over bespoke. A large education company was deploying across hundreds of business units. The instinct was to customise for each one. The better approach turned out to be establishing the agent as a standardised front door with explicit rollout standards, rather than letting each unit move independently.</p>
+        <p>The skill tree isn't static. Every deployment adds to it. You learn what warning signs look like earlier, which mistakes are recoverable and which aren't, and which questions to ask in the first week that save you months later. The branches compound because the patterns repeat, even when the customers don't.</p>
+        <p>That compounding is the moat. It's what separates someone on their third deployment from someone on their thirtieth.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>

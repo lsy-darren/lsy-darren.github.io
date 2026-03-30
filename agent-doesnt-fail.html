@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Agent Doesn't Fail. The Rollout Does. — Darren Lee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0e0e0e;
+      --text: #d4cfc8;
+      --text-dim: #7a756d;
+      --text-bright: #ebe6de;
+      --accent: #c8a882;
+      --rule: #2a2724;
+      --serif: 'Newsreader', Georgia, serif;
+      --sans: 'Outfit', system-ui, sans-serif;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 0;
+      background: rgba(14, 14, 14, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.4s ease;
+    }
+
+    nav.scrolled { border-bottom-color: var(--rule); }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text-bright);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-back {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: color 0.3s ease;
+    }
+
+    .nav-back:hover { color: var(--text-bright); }
+
+    main {
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+    }
+
+    .article-meta {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text-bright);
+      line-height: 1.25;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .article-body p {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.6rem;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .article-body a:hover { border-bottom-color: var(--accent); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .article-body p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <div class="container">
+      <a class="nav-name" href="index.html">Darren Lee</a>
+      <a class="nav-back" href="index.html#writing">← Writing</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="article-meta">Feb 2026</div>
+      <h1>The Agent Doesn't Fail. The Rollout Does.</h1>
+      <div class="article-body">
+        <p>When an AI agent underperforms in production, the first instinct is almost always to blame the model. The AI isn't smart enough. The responses aren't accurate. The technology isn't ready.</p>
+        <p>In my experience, the model is rarely the problem. Everything around it is.</p>
+        <p>A European bank launched a voice agent with a 21% success rate in its first two weeks. The AI was performing fine. The blockers were latency, transcription accuracy in their customer's dialect, and the fact that the operations team hadn't set up incident management or analytics. Nobody was monitoring the agent because nobody had decided whose job that was.</p>
+        <p>A fintech's CRM integration behaved differently under live load than in testing. Customer sentiment dropped within hours of launch. The agent's reasoning was sound. The integration layer hadn't been stress-tested.</p>
+        <p>At a health and wellness company, the team spent three months debating escalation rules word by word. Forty percent of conversations were being over-transferred to human agents. Then, during an informal dinner with the customer's care operations team, someone mentioned that the entire 600-word escalation policy had been generated by ChatGPT. Not by Legal. Not by Compliance. By a mid-level manager who needed something fast. Three months of negotiation had been anchored to a document nobody had vetted. One dinner surfaced what dozens of meetings hadn't.</p>
+        <p>The pattern across all of these: agent quality is table stakes now. The models are good enough. What determines success or failure is everything between "it works in staging" and "it's delivering value in production." Integration readiness. Organisational alignment. Operational support. Executive engagement. Scope decisions. Channel decisions. The rollout.</p>
+        <p>This is also why I think the "AI isn't ready" narrative tends to be misleading. When a deployment struggles, the conclusion is often that the technology needs to improve. Sometimes that's true. But more often, the technology was fine and the deployment wasn't designed to let it succeed.</p>
+        <p>The question worth asking isn't "is the agent good enough?" It's "is the rollout good enough?"</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>

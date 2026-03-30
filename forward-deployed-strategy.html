@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forward Deployed Strategy — Darren Lee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0e0e0e;
+      --text: #d4cfc8;
+      --text-dim: #7a756d;
+      --text-bright: #ebe6de;
+      --accent: #c8a882;
+      --rule: #2a2724;
+      --serif: 'Newsreader', Georgia, serif;
+      --sans: 'Outfit', system-ui, sans-serif;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 0;
+      background: rgba(14, 14, 14, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.4s ease;
+    }
+
+    nav.scrolled { border-bottom-color: var(--rule); }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text-bright);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-back {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: color 0.3s ease;
+    }
+
+    .nav-back:hover { color: var(--text-bright); }
+
+    main {
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+    }
+
+    .article-meta {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text-bright);
+      line-height: 1.25;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .article-body p {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.6rem;
+    }
+
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .article-body a:hover { border-bottom-color: var(--accent); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .article-body p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <div class="container">
+      <a class="nav-name" href="index.html">Darren Lee</a>
+      <a class="nav-back" href="index.html#writing">← Writing</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="article-meta">Nov 2025</div>
+      <h1>Forward Deployed Strategy</h1>
+      <div class="article-body">
+        <p>New technology creates new problems, and new problems create new roles.</p>
+        <p>When tech products got too complex for engineers alone to understand the customer, and too technical for salespeople to represent to engineering, someone had to sit in the middle. That's how product management was born in tech. Hewlett-Packard formalised it. Microsoft called it "Program Manager." Google created the role almost by accident. Each time, the gap between what was being built and who it was being built for had gotten too wide for existing roles to bridge.</p>
+        <p>Palantir had its own version of this. Their platforms required intricate knowledge of business processes in defence, aerospace, healthcare, and intelligence. The only way to gain that knowledge was to embed engineers at the customer site, working inside their systems. So Palantir created the Forward Deployed Engineer. Nabeel Qureshi, who spent eight years as one, described the engine in his "Reflections on Palantir": small teams of FDEs would learn fast on the ground, and the core product team would build those learnings back into the platform. The moat wasn't the software. It was the accumulated knowledge about how messy enterprise data actually works.</p>
+        <p>When AI companies started deploying agents into enterprises, the FDE model naturally carried over. Every agent deployment is specific to the customer: their products, policies, tone, escalation paths. Agents need custom integrations into CRMs, telephony platforms, knowledge bases. They need to handle edge cases no general model can anticipate. Like Palantir's platforms, they tend to need people on the ground, building alongside the customer.</p>
+        <p>But I've come to believe that forward deployed engineering alone isn't enough. Equally important is forward deployed strategy. The more consequential challenge often comes before the first line of agent logic is written. Which use case do you start with? Which channel? What should the agent refuse to do? How do you sequence the rollout to build credibility before you scale? How do you avoid automating a process the organisation isn't politically ready to let go of? Successful deployments tend to require both: the engineering to build it right, and the strategy to build the right thing.</p>
+        <p>What made this strategic layer so important for AI? With agents, the deployment decisions <em>are</em> the product decisions. Choosing the wrong use case doesn't just mean a poor rollout. It means you built the wrong product for that customer. Choosing the wrong channel doesn't just mean low reach. It means fundamentally different performance, because voice and chat have entirely different conversion characteristics, cost structures, and user expectations.</p>
+        <p>I've seen this in my own deployments. At a South Asian telco, we ran two pilots simultaneously: outbound upsell and lead generation. Same team, same technology. The upsell felt like spam; conversion was near zero. Lead generation worked because it solved a real problem: the legacy process was slow, manual, and universally disliked. The AI wasn't the variable. The choice of which problem to solve was.</p>
+        <p>At a Southeast Asian telco, we deployed a cross-sell agent on WhatsApp to maximise reach. Enormous infrastructure costs, negligible lift. On voice, conversion jumped 5x. Citizens in that market do business on the phone. The channel turned out to be <em>the</em> strategic decision.</p>
+        <p>Good consultants have always done some version of this kind of work. The difference is that traditional strategy tends to be discovered, documented, and handed off. Forward deployed strategy differs in three ways.</p>
+        <p>First, it accompanies execution. You're in the room when the agent is scoped, when it goes live, and when the first feedback arrives. The WhatsApp-versus-voice insight came from watching real data in week two and pivoting, not from an offsite.</p>
+        <p>Second, it's continuous. It has its own cycle: strategise, implement, observe, refine, repeat. The strategy evolves as the deployment evolves.</p>
+        <p>Third, it tends to be more technical and granular, operating less at the level of "invest in AI" and more at "deploy on voice, not chat, because your customers in this region pick up the phone."</p>
+        <p>It's not quite consulting, engineering, or product management. It sits at the intersection of all three.</p>
+        <p>I don't think this is just my observation. ElevenLabs now hires for "Forward Deployed Engineer" and "Deployment Strategist" as separate roles. OpenAI distinguishes FDEs from Solutions Architects. Decagon's co-founder came from a deployment strategy role at Palantir. Sierra created "Agent Strategist." These companies arrived at a similar conclusion independently: deploying the agent and deciding what to deploy require different skill sets.</p>
+        <p>I believe Forward Deployed Strategy is becoming its own discipline, with its own skill tree, failure modes, and dedicated roles. As AI agents become the primary interface between businesses and their customers, I think this discipline will only grow.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+</body>
+</html>
